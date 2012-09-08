@@ -3,8 +3,9 @@ require([
   'backbone',
   'images_collection'
 ], function( _, Backbone, ImagesCollection ){
+  // Backbone.sync Override
 
-    // Map from CRUD to HTTP for our default `Backbone.sync` implementation.
+  // Map from CRUD to HTTP for our default `Backbone.sync` implementation.
   var methodMap = {
     'create': 'POST',
     'update': 'PUT',
@@ -23,7 +24,6 @@ require([
   var urlError = function() {
     throw new Error('A "url" property or function must be specified');
   };
-
 
   Backbone.sync = function(method, model, options) {
     var type = methodMap[method];
@@ -75,13 +75,15 @@ require([
     return $.ajax(_.extend(params, options));
   };
 
+
+
+
   $(function(){
     var images = window.images = new ImagesCollection();
 
     images.fetch().done(function(){
       console.log( images.toJSON() );
     });
-
   });
 
 });
