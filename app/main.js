@@ -83,6 +83,15 @@ require([
 
     images.fetch().done(function(){
       console.log( images.toJSON() );
+      var imageData = images.toJSON();
+      var numObjects = imageData.length;
+      for (var i = 0; i < numObjects; i++) {
+        var newImg = document.createElement("img");
+        newImg.src = imageData[i].link;
+        document.body.appendChild(newImg);
+        document.body.innerHTML += "<br />"
+        console.log(imageData[i].link);
+      }
     });
   });
 
